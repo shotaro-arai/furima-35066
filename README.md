@@ -1,24 +1,69 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| column          | type    | options     |
+|-----------------|---------|-------------|
+| nickname        | string  | null: false |
+| email           | string  | null: false |
+| password        | string  | null: false |
+| last_name       | string  | null: false |
+| first_name      | string  | null: false | 
+| last_name_kana  | string  | null: false |
+| first_name_kana | string  | null: false |
+| birth_year      | integer | null: false |
+| birth_month     | integer | null: false |
+| birth_day       | integer | null: false |
 
-* Ruby version
+### Association
+  has_many :items
+  has_one :address
+  has_many :comments
 
-* System dependencies
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+| column           | type       | options                        |
+|------------------|------------|--------------------------------|
+| item_name        | string     | null: false                    |
+| item_description | text       | null: false                    |
+| category         | integer    | null: false                    |
+| condition        | integer    | null: false                    |
+| delivery_fee     | integer    | null: false                    |
+| area_from        | integer    | null: false                    |
+| term_to_send     | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
+  belongs_to :user
+  has_one :address
+  has_many :comments
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## addressesテーブル
 
-* Deployment instructions
+| column         | type       | options                        |
+|----------------|------------|--------------------------------|
+| post_code      | string     | null: false                    |
+| prefectures    | integer    | null: false                    |
+| city           | string     | null: false                    |
+| address_number | string     | null: false                    |
+| building       | string     |                                |
+| phone_number   | integer    | null: false                    |
+| user           | references | null: false, foreign_key: true |
+| item           | references | null: false, foreign_key: true |
 
-* ...
+belongs_to :user
+belongs_to :item
+
+
+## commentsテーブル
+| column  | type       | options                        |
+|---------|------------|--------------------------------|
+| comment | text       | null: false                    |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+belongs_to :user
+belongs_to :item
