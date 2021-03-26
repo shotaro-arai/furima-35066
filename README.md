@@ -14,7 +14,7 @@
 
 ### Association
   has_many :items
-  has_many :comments
+  has_many :sales_records
 
 
 ## itemsテーブル
@@ -35,6 +35,14 @@
   belongs_to :user
   has_one :address
   has_many :comments
+
+
+## sales_recordsテーブル
+
+| column    | type       | options                        |
+|-----------|------------|--------------------------------|
+| item      | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
 
 
 ## addressesテーブル
