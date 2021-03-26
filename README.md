@@ -12,10 +12,8 @@
 | first_name_kana | string  | null: false               |
 | birthday        | date    | null: false               |
 
-
 ### Association
   has_many :items
-  has_one :address
   has_many :comments
 
 
@@ -52,8 +50,8 @@
 | user           | references | null: false, foreign_key: true |
 | item           | references | null: false, foreign_key: true |
 
-belongs_to :user
-belongs_to :item
+### Association
+  belongs_to :item
 
 
 ## commentsテーブル
@@ -63,5 +61,6 @@ belongs_to :item
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
 
-belongs_to :user
-belongs_to :item
+### Association
+  belongs_to :user
+  belongs_to :item
