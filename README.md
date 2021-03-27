@@ -23,11 +23,11 @@
 |------------------|------------|--------------------------------|
 | item_name        | string     | null: false                    |
 | item_description | text       | null: false                    |
-| category         | integer    | null: false                    |
-| condition        | integer    | null: false                    |
-| delivery_fee     | integer    | null: false                    |
-| area_from        | integer    | null: false                    |
-| term_to_send     | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| delivery_fee_id  | integer    | null: false                    |
+| area_from-id     | integer    | null: false                    |
+| term_to_send_id  | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
 
