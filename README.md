@@ -22,15 +22,15 @@
 
 | column           | type       | options                        |
 |------------------|------------|--------------------------------|
-| name        | string     | null: false                    |
-| description | text       | null: false                    |
-| category_id      | integer    | null: false                    |
-| condition_id     | integer    | null: false                    |
-| delivery_fee_id  | integer    | null: false                    |
-| area_from-id     | integer    | null: false                    |
-| term_to_send_id  | integer    | null: false                    |
-| price            | integer    | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| name            | string     | null: false                    |
+| description     | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| condition_id    | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
+| area_from_id    | integer    | null: false                    |
+| term_to_send_id | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
   belongs_to :user
