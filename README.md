@@ -34,7 +34,7 @@
 
 ### Association
   belongs_to :user
-  has_one :sales_records
+  has_one :sales_record
 
 
 ## sales_recordsテーブル
