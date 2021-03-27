@@ -57,16 +57,5 @@
 | phone_number   | string     | null: false                    |
 
 ### Association
-  belongs_to :item
+  belongs_to :sales_record
 
-
-## commentsテーブル
-| column  | type       | options                        |
-|---------|------------|--------------------------------|
-| comment | text       | null: false                    |
-| user    | references | null: false, foreign_key: true |
-| item    | references | null: false, foreign_key: true |
-
-### Association
-  belongs_to :user
-  belongs_to :item
