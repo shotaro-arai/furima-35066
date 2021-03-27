@@ -33,8 +33,7 @@
 
 ### Association
   belongs_to :user
-  has_one :address
-  has_many :comments
+  has_one :sales_records
 
 
 ## sales_recordsテーブル
@@ -43,6 +42,7 @@
 |-----------|------------|--------------------------------|
 | item      | references | null: false, foreign_key: true |
 | user      | references | null: false, foreign_key: true |
+| address   | references | null: false, foreign_key: true |
 
 
 ## addressesテーブル
