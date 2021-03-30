@@ -3,7 +3,6 @@ FactoryBot.define do
     nickname              {Faker::Internet.username}
     email                 {Faker::Internet.email}
     password              {'abc123'}
-    password = 'abc123'
     password_confirmation {password}
     last_name             {Gimei.name.last}
     first_name            {Gimei.name.first}
