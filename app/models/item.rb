@@ -1,8 +1,9 @@
 class Item < ApplicationRecord
-  
+
   with_options presence: true do
     validates :name
     validates :description
+    with_options numericality: {other_than: 1}
     validates :category_id
     validates :condition_id 
     validates :delivery_fee_id
@@ -14,4 +15,11 @@ class Item < ApplicationRecord
 
 
   belongs_to :user
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :delivery_fee
+  belongs_to :prefectures
+  belongs_to :term_to_send
 end
