@@ -36,7 +36,7 @@ RSpec.describe Item, type: :model do
     end
 
     it "category_idが1の場合は商品出品できない" do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
@@ -48,7 +48,7 @@ RSpec.describe Item, type: :model do
     end
 
     it "condition_idが1の場合は商品出品できない" do
-      @item.condition_id = '1'
+      @item.condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition must be other than 1")
     end
@@ -60,7 +60,7 @@ RSpec.describe Item, type: :model do
     end
 
     it "delivery_fee_idが1の場合は商品出品できない" do
-      @item.delivery_fee_id = '1'
+      @item.delivery_fee_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
     end
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
     end
 
     it "prefectures_idが1の場合は商品出品できない" do
-      @item.prefectures_id = '1'
+      @item.prefectures_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
     end
@@ -84,7 +84,7 @@ RSpec.describe Item, type: :model do
     end
 
     it "term_to_send_idが1の場合は商品出品できない" do
-      @item.term_to_send_id = '1'
+      @item.term_to_send_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Term to send must be other than 1")
     end
