@@ -2,6 +2,7 @@ class SalesRecordsController < ApplicationController
 
   def index
     @sales_record_address = SalesRecordAddress.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
