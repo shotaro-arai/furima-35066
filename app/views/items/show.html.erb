@@ -21,23 +21,21 @@
         <%= @item.price %>
       </span>
       <span class="item-postage">
-        <%= "配送料負担" %>
+        <%= @item.delivery_fee.name %>
       </span>
     </div>
 
 
     <% if user_signed_in? %>
-      <% if current_user.id == @item.user_id %>
-        <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
-        <p class="or-text">or</p>
-        <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
-
-      <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <% else %>
-        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-      <% end %>
-      <%# //商品が売れていない場合はこちらを表示しましょう %>
-
+      <% if @item.sales_record.blank? %>
+        <% if current_user.id == @item.user_id %>
+          <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
+        <% else %>
+          <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+        <% end %>
+      <% end %>  
     <% end %>
 
 
@@ -48,7 +46,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.name %></td>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
