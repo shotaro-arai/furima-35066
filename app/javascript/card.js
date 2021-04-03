@@ -1,5 +1,10 @@
 const pay = ()=> {
-  console.log("pay");
+  const chargeForm = document.getElementById("charge-form");
+  chargeForm.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    
+
+  });
 };
 
 
