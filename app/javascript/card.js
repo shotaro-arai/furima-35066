@@ -23,13 +23,13 @@ const pay = ()=> {
         const tokenObject = `<input value=${token} name="token" type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObject);
         
-        document.getElementById("card-number").removeAttribute("name");
-        document.getElementById("card-exp-month").removeAttribute("name");
-        document.getElementById("card-exp-year").removeAttribute("name");
-        document.getElementById("card-cvc").removeAttribute("name");
-
-        document.getElementById("charge-form").submit();
       };
+      document.getElementById("card-number").removeAttribute("name");
+      document.getElementById("card-exp-month").removeAttribute("name");
+      document.getElementById("card-exp-year").removeAttribute("name");
+      document.getElementById("card-cvc").removeAttribute("name");
+
+      document.getElementById("charge-form").submit();
     });
   });
 };
