@@ -80,6 +80,27 @@ RSpec.describe SalesRecordAddress, type: :model do
         sleep(1)
       end
 
+      it "電話番号の値が英数混合の場合は商品購入できない" do
+        @sales_record_address.phone_number = '0764abcdefg'
+        @sales_record_address.valid?
+        expect(@sales_record_address.errors.full_messages).to include("Phone number is invalid")
+        sleep(1)
+      end
+
+      it "user_idがないと商品購入できない" do
+        @sales_record_address.user_id = ''
+        @sales_record_address.valid?
+        expect(@sales_record_address.errors.full_messages).to include("User can't be blank")
+        sleep(1)
+      end
+
+      it "item_idがないと商品購入できない" do
+        @sales_record_address.item_id = ''
+        @sales_record_address.valid?
+        expect(@sales_record_address.errors.full_messages).to include("Item can't be blank")
+        sleep(1)
+      end
+
       it "tokenの値が空の場合は商品購入できない" do
         @sales_record_address.token = nil
         @sales_record_address.valid?
