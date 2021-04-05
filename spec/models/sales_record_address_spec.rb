@@ -66,18 +66,21 @@ RSpec.describe SalesRecordAddress, type: :model do
       @sales_record_address.phone_number = ''
       @sales_record_address.valid?
       expect(@sales_record_address.errors.full_messages).to include("Phone number can't be blank")
+      sleep(1)
     end
 
     it "電話番号の値が11桁より多い場合は商品購入できない" do
       @sales_record_address.phone_number = '076432109876'
       @sales_record_address.valid?
       expect(@sales_record_address.errors.full_messages).to include("Phone number is invalid")
+      sleep(1)
     end
 
     it "tokenの値が空の場合は商品購入できない" do
       @sales_record_address.token = nil
       @sales_record_address.valid?
       expect(@sales_record_address.errors.full_messages).to include("Token can't be blank")
+      sleep(1)
     end
   end
 end
