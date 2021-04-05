@@ -1,10 +1,10 @@
 class SalesRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :move_action
+  before_action :set_item
 
   def index
     @sales_record_address = SalesRecordAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -14,7 +14,6 @@ class SalesRecordsController < ApplicationController
       @sales_record_address.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render 'index'
     end
   end
@@ -39,5 +38,9 @@ class SalesRecordsController < ApplicationController
         card: sales_record_address_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
