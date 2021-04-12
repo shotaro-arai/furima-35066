@@ -45,9 +45,31 @@ class ItemsController < ApplicationController
 
   def search
     if params[:keyword] != ""
-      @items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
+      items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
+      @items = items.order("created_at DESC")
+      @keyword = params[:keyword]
     else
-      @items = Item.all
+      items = Item.all
+      @items = items.order("created_at DESC")
+    end
+  end
+    
+  def sort
+    items = Item.where('name LIKE(?)', "%#{params[:item][:keyword]}%")
+    @keyword = params[:item][:keyword]
+    case params[:item][:sort]
+      when "new"
+        @items = items.order("created_at DESC")
+        render 'search'
+      when "old"
+        @items = items.order("created_at ASC")
+        render 'search'
+      when "low"
+        @items = items.order("price ASC")
+        render 'search'
+      when "expensive"
+        @items = items.order("price DESC")
+        render 'search'
     end
   end
 
