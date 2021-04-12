@@ -1,0 +1,50 @@
+<%= render "shared/header" %>
+  
+ <%# 検索結果 %>
+ <%# 商品一覧 %>
+  <div class='item-search-contents'>
+    <h2 class='title'>
+        <%= @items.length %>件ヒットしました
+    </h2>
+    <div class= "sort-box">
+      <%= form_with model:@items ,url: sort_items_path, method: :get, class:"chang-sort", local: true do |f| %>
+        <label>
+          <%= f.select :sort, options_for_select({新規出品順: :new, 出品の古い順: :old,価格の安い順: :low, 価格の高い順: :expensive })%>
+            <%= f.hidden_field :keyword, value: @keyword%>
+          <%= f.submit "送信"%>
+        </label>
+      <% end %>
+    </div>
+    <ul class='item-search-lists'>
+      <% @items.each do |item|%>
+      <li class='list'>
+        <%= link_to item_path(item.id) do %>
+        <div class ="search-wrapper">  
+          <div class='item-img-content'>
+            <%= image_tag item.image, class: "item-img" if item.image.attached? %>
+            <% if item.sales_record.present? %> 
+              <div class='sold-out-search'>
+                <span>Sold Out!!</span>
+              </div>
+            <% end %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.price %>円<br><%= item.delivery_fee.name %></span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <% end %>
+      </li>
+      <% end %>
+  <%# /商品の概要 %>
+</div>
+
+<%= render "shared/footer" %>

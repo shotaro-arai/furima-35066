@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :sales_records, only: [:index, :create]
     collection do
       get 'search'
+      get 'sort'
     end
   end
 end
