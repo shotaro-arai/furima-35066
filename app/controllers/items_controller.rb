@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search, :sort]
   before_action :set_item, only:[:show, :edit, :update, :destroy]
   before_action :move_action, only:[:edit, :update, :destroy]
 
@@ -53,23 +53,24 @@ class ItemsController < ApplicationController
       @items = items.order("created_at DESC")
     end
   end
-    
+
+  def incremental_search
+    items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
+    render json:{keyword: items}
+  end
+
   def sort
     items = Item.where('name LIKE(?)', "%#{params[:item][:keyword]}%")
     @keyword = params[:item][:keyword]
     case params[:item][:sort]
       when "new"
         @items = items.order("created_at DESC")
-        render 'search'
       when "old"
         @items = items.order("created_at ASC")
-        render 'search'
       when "low"
         @items = items.order("price ASC")
-        render 'search'
       when "expensive"
         @items = items.order("price DESC")
-        render 'search'
     end
   end
 
