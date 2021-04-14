@@ -39,3 +39,17 @@
   padding-bottom: 180px;
   background-color: hsla(182, 60%, 52%,0.125);
 }
+
+.chang-sort{
+  position: absolute;
+  top: 130px;
+  right: 100px;
+}
+
+.change-btn{
+  margin-left: 10px;
+  font-size: smaller;
+  padding:0 5px ;
+  height: 22px;
+
+}

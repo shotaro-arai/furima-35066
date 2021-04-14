@@ -29,15 +29,14 @@
 
 #incremental-search{
   position: absolute;
-  z-index: auto;
+  z-index:1;
   width: 300px;
   left: 28%;
   top: -10%;
-  box-shadow: 5px 5px rgba(255, 252, 249,0.7);
 }
 
 .child{
-  background-color: rgb(255, 252, 249);
+  background-color: rgba(255, 252, 249,0.85);
   font-size: medium;
   padding: 5px 0 5px 10px;
   cursor: pointer;

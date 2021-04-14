@@ -11,7 +11,7 @@
         <label>
           <%= f.select :sort, options_for_select({新規出品順: :new, 出品の古い順: :old,価格の安い順: :low, 価格の高い順: :expensive })%>
             <%= f.hidden_field :keyword, value: @keyword%>
-          <%= f.submit "送信"%>
+          <%= f.submit "変更", class: "change-btn"%>
         </label>
       <% end %>
     </div>
