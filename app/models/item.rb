@@ -24,4 +24,27 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :prefectures
   belongs_to :term_to_send
+
+  
+  def self.search(keyword)
+    if keyword != ""
+      Item.where('name LIKE(?)', "%#{keyword}%").order("created_at DESC")
+    else
+      Item.all.order("created_at DESC")
+    end
+  end
+
+  def self.sort(keyword,sort)
+    items = Item.where('name LIKE(?)', "%#{keyword}%")
+    case sort
+      when "new"
+        items.order("created_at DESC")
+      when "old"
+        items.order("created_at ASC")
+      when "low"
+        items.order("price ASC")
+      when "expensive"
+        items.order("price DESC")
+    end
+  end
 end

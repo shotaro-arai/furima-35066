@@ -44,14 +44,8 @@ class ItemsController < ApplicationController
   end
 
   def search
-    if params[:keyword] != ""
-      items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
-      @items = items.order("created_at DESC")
-      @keyword = params[:keyword]
-    else
-      items = Item.all
-      @items = items.order("created_at DESC")
-    end
+    @items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
   end
 
   def incremental_search
@@ -60,21 +54,11 @@ class ItemsController < ApplicationController
   end
 
   def sort
-    items = Item.where('name LIKE(?)', "%#{params[:item][:keyword]}%")
+    @items = Item.sort(params[:item][:keyword],params[:item][:sort])
     @keyword = params[:item][:keyword]
-    case params[:item][:sort]
-      when "new"
-        @items = items.order("created_at DESC")
-      when "old"
-        @items = items.order("created_at ASC")
-      when "low"
-        @items = items.order("price ASC")
-      when "expensive"
-        @items = items.order("price DESC")
-    end
   end
 
-  private
+private
 
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :condition_id, :delivery_fee_id, :prefectures_id, :term_to_send_id, :price, :image).merge(user_id: current_user.id)
