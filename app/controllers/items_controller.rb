@@ -56,6 +56,7 @@ class ItemsController < ApplicationController
   def sort
     @items = Item.sort(params[:item][:keyword],params[:item][:sort])
     @keyword = params[:item][:keyword]
+    @sort = params[:item][:sort]
   end
 
 private
