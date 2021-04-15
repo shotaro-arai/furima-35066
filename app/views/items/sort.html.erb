@@ -1,0 +1,21 @@
+<%= render "shared/header" %>
+  
+ <%# 検索結果 %>
+ <%# 商品一覧 %>
+  <div class='item-search-contents'>
+    <h2 class='title'>
+        <%= @items.length %>件ヒットしました
+    </h2>
+    <div class= "sort-box">
+      <%= form_with model:@items ,url: sort_items_path, method: :get, class:"sort-form", local: true do |f| %>
+        <label>
+          <%= f.select :sort, options_for_select({新規出品順: :new, 出品の古い順: :old,価格の安い順: :low, 価格の高い順: :expensive },selected: @sort), {}, {class: 'sort-value'}%>
+            <%= f.hidden_field :keyword, value: @keyword%>
+          <%= f.submit "変更", class: "change-btn"%>
+        </label>
+      <% end %>
+    </div>
+    <%= render "result" %>
+  </div>
+
+<%= render "shared/footer" %>

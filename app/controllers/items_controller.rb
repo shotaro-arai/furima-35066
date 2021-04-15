@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search, :incremental_search, :sort]
   before_action :set_item, only:[:show, :edit, :update, :destroy]
   before_action :move_action, only:[:edit, :update, :destroy]
 
@@ -43,7 +43,23 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-  private
+  def search
+    @items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
+  end
+
+  def incremental_search
+    items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
+    render json:{keyword: items}
+  end
+
+  def sort
+    @items = Item.sort(params[:item][:keyword],params[:item][:sort])
+    @keyword = params[:item][:keyword]
+    @sort = params[:item][:sort]
+  end
+
+private
 
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :condition_id, :delivery_fee_id, :prefectures_id, :term_to_send_id, :price, :image).merge(user_id: current_user.id)
